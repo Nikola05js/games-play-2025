@@ -15,6 +15,25 @@ export function useGetAllGames() {
         //     .then(result => setGames(result))
         },[])
 
-    return [games, setGames];
+    return [
+        games, 
+        setGames
+    ];
 
+}
+
+export function useGetOneGames(gameId) {
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            const result = await gamesAPI.getOne(gameId)
+            setGame(result)
+        })()
+    },[gameId]);
+
+    return [
+        game,
+        setGame
+    ]
 }
